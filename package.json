@@ -1,0 +1,33 @@
+{
+  "name": "soda-gg",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "bin": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx tsc -p tsconfig.production.json && tscpaths -p tsconfig.production.json -s ./src -o ./dist",
+    "prod": "node dist/index.js",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts",
+    "pkg": "yarn run build && pkg . --compress Brotli --out-path build_bin",
+    "start:test": "ts-node -r tsconfig-paths/register src/test.ts",
+    "start:any": "ts-node -r tsconfig-paths/register"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "pkg": "^5.8.0",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.1.2",
+    "tscpaths": "^0.0.9",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^6.9.3",
+    "dotenv": "^16.0.3",
+    "moment": "^2.29.4"
+  },
+  "pkg": {
+    "assets": [
+      "logs/**"
+    ]
+  }
+}
